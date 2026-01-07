@@ -48,6 +48,13 @@
 .dataTables_wrapper {
   margin-bottom: 10px;
 }
+
+/* Ensure all cells/headers in the Color table are centered */
+#ColorTable th,
+#ColorTable td {
+  text-align: center;
+  vertical-align: middle;
+}
 </style>
 
 <template>
@@ -112,9 +119,9 @@ class="px-12 py-4 text-2xl font-bold tracking-wider text-white uppercase bg-blue
 
             <table
           id="ColorTable"
-          class="w-full text-gray-700 bg-white border border-gray-300 rounded-lg shadow-md table-auto"
+          class="text-center w-full text-gray-700 bg-white border border-gray-300 rounded-lg shadow-md table-auto"
           >
-          <thead>
+          <thead class="text-center">
             <tr
                 class="bg-gradient-to-r from-blue-600 via-blue-500 to-blue-600 text-[16px] text-white border-b border-blue-700"
               >
@@ -123,13 +130,13 @@ class="px-12 py-4 text-2xl font-bold tracking-wider text-white uppercase bg-blue
               <th class="p-4 font-semibold tracking-wide  uppercase">Actions</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody class="">
             <tr
   v-for="(color, index) in allcolors"
   :key="color.id"
   class="hover:bg-gray-200"
 >
-            <td class="px-6 py-3 text- first-letter:">{{ index + 1 }}</td>
+            <td class="px-6 py-3 text-center first-letter:">{{ index + 1 }}</td>
               <td class="px-6 py-3">{{ color.name }}</td>
               <td class="px-6 py-3 text- ">
 

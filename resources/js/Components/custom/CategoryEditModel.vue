@@ -154,7 +154,7 @@ const { open, categories, selectedCategory } = defineProps({
 const form = useForm({
   name: "",
   parent_id: "",
-  commission: "",
+  commission: 0,
 });
 
 // Computed property to filter categories
@@ -169,7 +169,7 @@ watch(
     if (newValue) {
       form.name = newValue.name || ""; // Populate name
       form.parent_id = newValue.parent?.id || "" // Populate parent_id
-      form.commission = newValue.commission ?? ''
+      form.commission = newValue.commission ?? 0
     }
   },
   { immediate: true } // Run immediately when the component is mounted

@@ -19,25 +19,25 @@ class DatabaseSeeder extends Seeder
                 'name'      => 'admin',
                 'email'     => 'admin@admin.com',
                 'role_type' => 'Admin',
-                'password'  => 'admin@amaak2025',
+                'password'  => 'admin@addict2025',
             ],
             [
                 'name'      => 'manager',
                 'email'     => 'manager@manager.com',
                 'role_type' => 'Manager',
-                'password'  => 'manager@amaak2025',
+                'password'  => 'manager@addict2025',
             ],
             [
                 'name'      => 'cashier',
                 'email'     => 't1@cashier.com',
                 'role_type' => 'Cashier',
-                'password'  => 'cashier@amaak2025',
+                'password'  => 'cashier@addict2025',
             ],
             [
                 'name'      => 'operator',
                 'email'     => 'operator@operator.com',
                 'role_type' => 'Operator',
-                'password'  => 'operator@amaak2025',
+                'password'  => 'operator@addict2025',
             ],
         ];
 
@@ -54,7 +54,7 @@ class DatabaseSeeder extends Seeder
 
         // Run other seeders
         $this->call([
-          
+
             //ColoranceStockSeeder::class,
             // ColorSeeder::class,
             // SizeSeeder::class,
