@@ -12,12 +12,19 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('sale_items', function (Blueprint $table) {
-            // Per-product discount fields
-            $table->decimal('discount', 5, 2)->default(0)->after('total_price')->comment('Discount percentage for this item');
-            $table->boolean('apply_discount')->default(false)->after('discount')->comment('Whether discount is applied to this item');
-            $table->decimal('discounted_price', 10, 2)->nullable()->after('apply_discount')->comment('Final price after applying discount');
-            $table->boolean('include_custom')->default(false)->after('discounted_price')->comment('Whether item is included in custom discount');
-            $table->decimal('selling_price', 10, 2)->nullable()->after('include_custom')->comment('Original selling price');
+            // Add new discount-related fields if they do not already exist
+            if (!Schema::hasColumn('sale_items', 'apply_discount')) {
+                $table->boolean('apply_discount')->default(false)->after('discount')->comment('Whether discount is applied to this item');
+            }
+            if (!Schema::hasColumn('sale_items', 'discounted_price')) {
+                $table->decimal('discounted_price', 10, 2)->nullable()->after('apply_discount')->comment('Final price after applying discount');
+            }
+            if (!Schema::hasColumn('sale_items', 'include_custom')) {
+                $table->boolean('include_custom')->default(false)->after('discounted_price')->comment('Whether item is included in custom discount');
+            }
+            if (!Schema::hasColumn('sale_items', 'selling_price')) {
+                $table->decimal('selling_price', 10, 2)->nullable()->after('include_custom')->comment('Original selling price');
+            }
         });
     }
 
@@ -27,13 +34,20 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('sale_items', function (Blueprint $table) {
-            $table->dropColumn([
-                'discount',
-                'apply_discount', 
+            $columnsToDrop = [];
+            foreach ([
+                'apply_discount',
                 'discounted_price',
                 'include_custom',
-                'selling_price'
-            ]);
+                'selling_price',
+            ] as $column) {
+                if (Schema::hasColumn('sale_items', $column)) {
+                    $columnsToDrop[] = $column;
+                }
+            }
+            if (!empty($columnsToDrop)) {
+                $table->dropColumn($columnsToDrop);
+            }
         });
     }
 };
