@@ -48,6 +48,12 @@
 .dataTables_wrapper {
   margin-bottom: 10px;
 }
+
+/* Center all table headers and cells in Size table */
+#SizeTable th,
+#SizeTable td {
+  text-align: center;
+}
 </style>
 
 <template>
@@ -122,9 +128,9 @@
   :key="size.id"
   class="hover:bg-gray-200"
 >
-            <td class="px-6 py-3 text- first-letter:">{{ index + 1 }}</td>
+            <td class="px-6 py-3">{{ index + 1 }}</td>
               <td class="px-6 py-3">{{ size.name }}</td>
-              <td class="px-6 py-3 text- ">
+              <td class="px-6 py-3">
 
 
 
