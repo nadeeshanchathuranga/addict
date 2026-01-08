@@ -134,10 +134,10 @@
       <span class="font-bold">{{ item.selling_price }}</span>
     </p>
 
-    <p class="text-xl text-black">
+    <!-- <p class="text-xl text-black disble">
       <span class="font-semibold">Cost Price:</span>
       <span class="font-bold">{{ item.cost_price }}</span>
-    </p>
+    </p> -->
 
     <p
       v-if="item.unit_id"
